@@ -4,11 +4,21 @@
 // see: https://zed.dev/docs/debugger
 [
 	{
-		"label": "Run Debug",
+		"label": "Run Player Debug",
 		"request": "launch",
-		"program": "$ZED_WORKTREE_ROOT/build/Debug/NikoEngine",
+		"program": "$ZED_WORKTREE_ROOT/build/bin/Debug/SFML_ECS_Networking",
 		"adapter": "CodeLLDB",
-		"cwd": "$ZED_WORKTREE_ROOT/build/Debug",
+		"cwd": "$ZED_WORKTREE_ROOT/build/bin/Debug",
 		"build": "Build Networking (Ninja)",
+		"args": ["1"],
+	},
+	{
+		"label": "Run Observer Debug",
+		"request": "launch",
+		"program": "$ZED_WORKTREE_ROOT/build/bin/Debug/SFML_ECS_Networking",
+		"adapter": "CodeLLDB",
+		"cwd": "$ZED_WORKTREE_ROOT/build/bin/Debug",
+		"build": "Build Networking (Ninja)",
+		"args": ["2"],
 	},
 ]

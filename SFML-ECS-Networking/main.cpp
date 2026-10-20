@@ -3,6 +3,8 @@
 #include "utils.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
+#include <cstring>
+#include <string>
 
 /*
  This is a TCP version of the Lab 3 game, which uses non-blocking networking for
@@ -11,16 +13,31 @@
  multiple connections from players, and receives their tank position updates.
 */
 
-int main() {
+int main(int argc, char *argv[]) {
   bool is_observer = false;
+  bool ready = false;
+  std::string title_type = "";
+  if (argc >= 2) {
+    if (strcmp(argv[1], "1") == 0) {
+      Utils::printMsg(
+          "Player chosen using command line arguments, preparing window...");
+      title_type = "Player";
+      is_observer = false;
+      ready = true;
+    } else if (strcmp(argv[1], "2") == 0) {
+      Utils::printMsg(
+          "Observer chosen using command line arguments, preparing window...");
+      title_type = "Observer";
+      is_observer = true;
+      ready = true;
+    } else {
+      Utils::printMsg("Invalid command line argument passed");
+    }
+  }
   unsigned short observer_port = 53000;
   unsigned short player_port = sf::Socket::AnyPort;
 
   Utils::printMsg("Game startup...");
-
-  std::string title_type = "";
-
-  bool ready = false;
 
   while (!ready) {
     Utils::printMsg("Are we playing or observing? Enter 1 for Player, enter 2 "
